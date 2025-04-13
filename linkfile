@@ -1,0 +1,16 @@
+[objects]
+src/cursor.obj
+src/earth.obj
+src/fire_ball.obj
+src/main.obj
+src/moon.obj
+src/core/background.obj
+src/core/pallete_sprite.obj
+src/core/storage_sprite.obj
+src/math/trigonometry.obj
+data.obj
+hdr.obj
+/opt/pvsneslib/pvsneslib/lib/LoROM_SlowROM/crt0_snes.obj
+/opt/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libc.obj
+/opt/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libm.obj
+/opt/pvsneslib/pvsneslib/lib/LoROM_SlowROM/libtcc.obj

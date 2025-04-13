@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "earth.h": "c",
+        "background.h": "c",
+        "cursor.h": "c"
+    }
+}

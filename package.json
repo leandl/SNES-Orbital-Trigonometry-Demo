@@ -1,0 +1,13 @@
+{
+  "name": "pvsneslib",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pvsneslib:build": "docker compose -f infra/compose.yaml up"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "config": {}
+}

@@ -1,0 +1,10 @@
+services:
+  pvsneslib:
+    build: .
+    container_name: pvsneslib_dev
+    env_file:
+      - ../.env
+    volumes:
+      - ..:/opt/snesdev
+    network_mode: "none" # Desativa a rede
+    command: ["make"]
