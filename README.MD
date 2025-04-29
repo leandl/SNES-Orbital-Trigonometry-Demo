@@ -4,7 +4,7 @@ Este é um projeto de demonstração para Super Nintendo (SNES) que simula a ór
 Inspirado no vídeo do GameDevBoss sobre órbitas no Mega Drive:  
 🎥 [SGDK 2.10 - Minha contribuição mudou tudo! O que eu fiz??? (YouTube)](https://www.youtube.com/watch?v=EkLGyghS1Vc)
 
-![Demonstração orbital](assets/orbital-demo.png)
+![Demonstração orbital](assets/orbital-demo.gif)
 
 ## ✨ Funcionalidades
 
