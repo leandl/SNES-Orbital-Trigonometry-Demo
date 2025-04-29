@@ -8,10 +8,11 @@ void Cursor_initSprite(Cursor* this) {
   oamSetEx(this->id, OBJ_SMALL, OBJ_SHOW);
 }
 
-u8 stpFrames[] = { 6, 36 };
+const u8 NUM_CURSOR_FRAMES = 2;
+u8 stpCursorFrames[] = { 6, 36 };
 
 void Cursor_renderSprite(Cursor* this) {
-  oamSet(this->id, this->x, this->y, this->priority, 0, 0, stpFrames[this->currentFrame], 1);
+  oamSet(this->id, this->x, this->y, this->priority, 0, 0, stpCursorFrames[this->currentFrame], 0);
 }
 
 
@@ -29,21 +30,52 @@ void Cursor_updatePosition(Cursor *this, Earth *earth) {
 }
 
 unsigned short pad0;
-const u8 step = 3;
+const u8 step = 3; 
+
+u8 debounceUpPress = 0;
+const u8 debounceUpPressTime = 30;
+
+u8 debounceDownPress = 0;
+const u8 debounceDownPressTime = 30;
+
 void Cursor_update(Cursor *this, Earth *earth, FireBall *fireBall) {
   pad0 = padsCurrent(0);
 
   if (snes_vblank_count % 10 == 0) {
-    this->currentFrame = (this->currentFrame + 1) % 2;
+    this->currentFrame = (this->currentFrame + 1) % NUM_CURSOR_FRAMES;
   }
 
   if (!pad0) {
     return;
   }
 
+
+  // FireBall
   if (pad0 & KEY_A) {
     FireBall_enableForAngle(fireBall, this->angle);
   }
+
+  // FireBall
+  if ((pad0 & KEY_UP) || (pad0 & KEY_DOWN)) {
+    if ((pad0 & KEY_UP) && debounceUpPress == 0) {
+      FireBall_addOneInSpeed(fireBall);
+      debounceUpPress = debounceUpPressTime;
+    } 
+    
+    if ((pad0 & KEY_DOWN) && debounceDownPress == 0) {
+      FireBall_removeOneInSpeed(fireBall);
+      debounceDownPress = debounceDownPressTime;
+    }  
+  }
+
+  if (debounceUpPress > 0) {
+    debounceUpPress--;
+  }
+
+  if (debounceDownPress > 0) {
+    debounceDownPress--;
+  }
+
 
   if ((pad0 & KEY_L) || (pad0 & KEY_R)) {
     if (pad0 & KEY_L) {

@@ -8,7 +8,7 @@ void Earth_initSprite(Earth* this) {
 }
 
 void Earth_renderSprite(Earth* this) {
-  oamSet(this->id, this->x, this->y, this->priority, 0, 0, 0, 1);
+  oamSet(this->id, this->x, this->y, this->priority, 0, 0, 0, 0);
 }
 
 Earth Earth_create(u8 id, u16 x, u16 y) {

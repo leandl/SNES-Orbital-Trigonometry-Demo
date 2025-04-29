@@ -5,7 +5,7 @@ src/fire_ball.obj
 src/main.obj
 src/moon.obj
 src/core/background.obj
-src/core/pallete_sprite.obj
+src/core/palette_sprite.obj
 src/core/storage_sprite.obj
 src/math/trigonometry.obj
 data.obj

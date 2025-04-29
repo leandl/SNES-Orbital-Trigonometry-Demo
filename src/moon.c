@@ -13,7 +13,7 @@ void Moon_destroySprite(Moon* this) {
 }
 
 void Moon_renderSprite( Moon* this) {
-  oamSet(this->id, this->x, this->y, this->priority, 0, 0, 4, 1);
+  oamSet(this->id, this->x, this->y, this->priority, 0, 0, 4, 0);
 }
 
 

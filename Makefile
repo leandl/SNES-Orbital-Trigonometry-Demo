@@ -22,11 +22,19 @@ clean: cleanBuildRes cleanRom cleanGfx
 bitmaps : ./res/gfx/bg.pic
 
 
-./res/sprite/spr_all.pic: ./res/sprite/spr_all.png
+./res/sprite/spr_all_palette1.pic: ./res/sprite/spr_all_palette1.png
 	@echo convert bitmap ... $(notdir $@)
 	$(GFXCONV) -s 32 -o 16 -u 16 -t png -i $<
 
-bitmaps : ./res/sprite/spr_all.pic
+bitmaps : ./res/sprite/spr_all_palette1.pic
+
+
+./res/sprite/spr_all_palette2.pic: ./res/sprite/spr_all_palette2.png
+	@echo convert bitmap ... $(notdir $@)
+	$(GFXCONV) -s 32 -o 16 -u 16 -t png -i $<
+
+bitmaps : ./res/sprite/spr_all_palette2.pic
+
 
 
 ./res/fonts/pvsneslibfont.pic: ./res/fonts/pvsneslibfont.png

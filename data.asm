@@ -24,12 +24,16 @@ palbackground_end:
 .section ".sprites" superfree
 
 gfxallsprites:
-.incbin "res/sprite/spr_all.pic"
+.incbin "res/sprite/spr_all_palette1.pic"
 gfxallsprites_end:
 
-palallsprites:
-.incbin "res/sprite/spr_all.pal"
-palallsprites_end:
+palallsprites1:
+.incbin "res/sprite/spr_all_palette1.pal"
+palallsprites1_end:
+
+palallsprites2:
+.incbin "res/sprite/spr_all_palette2.pal"
+palallsprites2_end:
 
 
 tilfont:

@@ -12,7 +12,6 @@ Inspirado no vídeo do GameDevBoss sobre órbitas no Mega Drive:
 - 🎮 Cursor controlável via controle SNES que também orbita a Terra.
 - 🛠️ Estrutura modular com `Earth`, `Moon`, `Cursor` e utilitários matemáticos.
 
-
 ## 🧮 Sistema Trigonométrico Customizado
 
 Para simular o movimento orbital sem o uso de ponto flutuante (não suportado nativamente pelo SNES), o projeto utiliza uma **tabela de lookup** para `seno` de 0° a 90°, com valores inteiros de 0 a 1000 (representando 0.0 a 1.0). A partir disso, as funções `sin` e `cos` são construídas com base na simetria dos quadrantes:
@@ -20,10 +19,10 @@ Para simular o movimento orbital sem o uso de ponto flutuante (não suportado na
 ### 🔢 Tabela de Seno (`all_angle[91]`)
 
 | Ângulo | Valor Inteiro | Valor Aproximado |
-|--------|----------------|------------------|
-| 0°     | 0              | 0.0              |
-| 30°    | 500            | 0.5              |
-| 90°    | 1000           | 1.0              |
+| ------ | ------------- | ---------------- |
+| 0°     | 0             | 0.0              |
+| 30°    | 500           | 0.5              |
+| 90°    | 1000          | 1.0              |
 
 Essa tabela reduz o custo computacional e evita cálculos de ponto flutuante em tempo real.
 
@@ -31,12 +30,11 @@ Essa tabela reduz o custo computacional e evita cálculos de ponto flutuante em 
 
 - `s16 sin(u16 angle)`  
   Calcula o seno com base na tabela, usando simetria dos quadrantes (0–359°).
-  
 - `s16 cos(u16 angle)`  
   Calcula o cosseno reutilizando o seno: `cos(x) = sin(x + 90°)`.
-  
 - `void TrigonometryOrbital_computePositionEx(...)`  
   Calcula a posição X/Y de um objeto orbitando outro com:
+
   - ângulo
   - distância
   - ponto de referência
@@ -47,7 +45,6 @@ Essa tabela reduz o custo computacional e evita cálculos de ponto flutuante em 
   - ângulo
   - distância
   - ponto de referência
-
 
 Essa abordagem permite criar órbitas **circulares ou elípticas** em tempo real com alta performance.
 
@@ -64,7 +61,6 @@ TrigonometryOrbital_computePosition(
   40             // raio orbital
 );
 ```
-
 
 ### 🔍 Escala Elíptica
 
@@ -87,7 +83,7 @@ TrigonometryOrbital_computePositionEx(
 ## ⚙️ Requisitos
 
 - [Docker](https://www.docker.com/)
-- [Node.js](https://nodejs.org/) *(opcional — usado para facilitar a execução do build via script)*
+- [Node.js](https://nodejs.org/) _(opcional — usado para facilitar a execução do build via script)_
 - `pvsneslib` instalada em um diretório anterior ao `workdir` do projeto
 
 ## 📦 Instalação da `pvsneslib`
@@ -98,6 +94,7 @@ Você pode baixá-la diretamente através da página de releases oficiais:
 🔗 **[Download da pvsneslib (Releases)](https://github.com/alekmaul/pvsneslib/releases)**
 
 > Após o download, descompacte a lib em um diretório anterior ao do seu projeto para que a estrutura fique assim:
+>
 > ```
 > /seu-workspace/
 > ├── pvsneslib/
@@ -114,10 +111,10 @@ Se você tiver o Node.js instalado, pode rodar:
 npm run pvsneslib:build
 ```
 
-
 ### Usando apenas Docker
 
 Se não tiver o Node.js instalado:
+
 ```bash
 docker compose -f infra/compose.yaml up
 ```
@@ -125,35 +122,34 @@ docker compose -f infra/compose.yaml up
 ## 📦 Estrutura do Projeto
 
 ```
-├── infra/ 
-│ ├── Dockerfile 
-│ └── compose.yaml           # Docker Compose para build automatizado 
-├── assets/ 
-│ └── orbital-demo.png       # Imagem ilustrativa da simulação 
-├── res/ 
+├── infra/
+│ ├── Dockerfile
+│ └── compose.yaml           # Docker Compose para build automatizado
+├── assets/
+│ └── orbital-demo.png       # Imagem ilustrativa da simulação
+├── res/
 │ ├── gfx/
 │ │ └── bg.png               # Imagem do Background
-│ └── sprite/ 
+│ └── sprite/
 │     └── spr_all.png        # Imagem com Todos os Sprites
-├── src/ 
-│ ├── core/ 
-│ │ ├── background.h/.c        # Gerenciamento do background 
-│ │ ├── pallete_sprite.h/.c    # Paletas de cor para sprites 
-│ │ └── storage_sprite.h/.c    # Carregamento e gerenciamento de sprites 
+├── src/
+│ ├── core/
+│ │ ├── background.h/.c        # Gerenciamento do background
+│ │ ├── palette_sprite.h/.c    # Paletas de cor para sprites
+│ │ └── storage_sprite.h/.c    # Carregamento e gerenciamento de sprites
 │ ├── math/
-│ │ └── trigonometry.h/.c      # Funções trigonométricas personalizadas 
+│ │ └── trigonometry.h/.c      # Funções trigonométricas personalizadas
 │ ├── main.c                   # Entrada principal do jogo
-│ ├── earth.h/.c               # Lógica da Terra 
+│ ├── earth.h/.c               # Lógica da Terra
 │ ├── moon.h/.c                # Lógica da Lua
-│ └── cursor.h/.c              # Lógica do cursor controlável 
+│ └── cursor.h/.c              # Lógica do cursor controlável
 ├── .env                       # Variáveis de Ambiente: Nome da ROM e Modo Debug
 ├── data.asm
-├── hdr.asm 
-├── Makefile 
+├── hdr.asm
+├── Makefile
 ├── README.md
 └── trigonometry.sfc           # Demonstração
 ```
-
 
 ## 🙌 Créditos
 
@@ -162,6 +158,7 @@ docker compose -f infra/compose.yaml up
   Vídeo: [SGDK 2.10 - Minha contribuição mudou tudo!](https://www.youtube.com/watch?v=EkLGyghS1Vc)
 
 ---
+
 Sinta-se livre para estudar, modificar e expandir!
 
 🛠️ Made with ❤️ e nostalgia.

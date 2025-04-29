@@ -12,10 +12,10 @@ void Background_init( Background* this) {
   bgInitTileSet(
     this->id,
     this->sprite_content,
-    this->pallete->content,
-    this->pallete->id, 
+    this->palette->content,
+    this->palette->id, 
     Background_getSpriteSize(this), 
-    PalleteSprite_getSize(this->pallete), 
+    PaletteSprite_getSize(this->palette), 
     BG_16COLORS,
     0x1000
   );
@@ -29,7 +29,7 @@ Background Background_create(
   u8 *sprite_content_end,
   u8 *map_content,
   u8 *map_content_end,
-  PalleteSprite  *pallete
+  PaletteSprite  *palette
 ) {
   Background storageSprite = {
     .id=id,
@@ -37,7 +37,7 @@ Background Background_create(
     .sprite_content_end=sprite_content_end,
     .map_content=map_content,
     .map_content_end=map_content_end,
-    .pallete=pallete
+    .palette=palette
   };
 
   return storageSprite;  

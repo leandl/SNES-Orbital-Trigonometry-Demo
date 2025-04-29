@@ -2,7 +2,7 @@
 #define BACKGROUND_H
 
 #include <snes.h>
-#include "pallete_sprite.h"
+#include "palette_sprite.h"
 
 // Estrutura para armazenar informações do sprite
 typedef struct Background {
@@ -14,7 +14,7 @@ typedef struct Background {
   u8 *map_content;
   u8 *map_content_end;
 
-  PalleteSprite *pallete;
+  PaletteSprite *palette;
 } Background;
 
 
@@ -24,7 +24,7 @@ Background Background_create(
   u8 *sprite_content_end,
   u8 *map_content,
   u8 *map_content_end,
-  PalleteSprite *pallete
+  PaletteSprite *palette
 );
 
 

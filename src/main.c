@@ -7,7 +7,7 @@
 
 ---------------------------------------------------------------------------------*/
 #include <snes.h>
-#include "core/pallete_sprite.h"
+#include "core/palette_sprite.h"
 #include "core/storage_sprite.h"
 #include "core/background.h"
 #include "earth.h"
@@ -20,16 +20,26 @@ extern char palbackground, palbackground_end;
 extern char mapbackground, mapbackground_end;
 
 extern char gfxallsprites, gfxallsprites_end;
-extern char palallsprites, palallsprites_end;
+extern char palallsprites1, palallsprites1_end;
+extern char palallsprites2, palallsprites2_end;
 
 int main() {
   consoleInit();  // Importante para iniciar a VRAM corretamente
 
-  PalleteSprite backgroundPallete = PalleteSprite_create(0, &palbackground, &palbackground_end);
-  Background background = Background_create(0, &gfxbackground, &gfxbackground_end, &mapbackground, &mapbackground_end, &backgroundPallete);
+  PaletteSprite backgroundPalette = PaletteSprite_create(0, &palbackground, &palbackground_end);
+  Background background = Background_create(0, &gfxbackground, &gfxbackground_end, &mapbackground, &mapbackground_end, &backgroundPalette);
 
-  PalleteSprite pallete = PalleteSprite_create(1, &palallsprites, &palallsprites_end);
-  StorageSprite storageSprite = StorageSprite_create(&gfxallsprites, &gfxallsprites_end, &pallete);
+  PaletteSprite palette1 = PaletteSprite_create(0, &palallsprites1, &palallsprites1_end);
+  PaletteSprite palette2 = PaletteSprite_create(1, &palallsprites2, &palallsprites2_end);
+
+  PaletteSprite *allPaletteSprites[4] = {
+    &palette1,
+    &palette2,
+    NULL,
+    NULL
+  };
+
+  StorageSprite storageSprite = StorageSprite_create(&gfxallsprites, &gfxallsprites_end, allPaletteSprites[0], allPaletteSprites[1]);  
 
   Background_init(&background);
   StorageSprite_init(&storageSprite);
@@ -59,7 +69,7 @@ int main() {
   while (1) {
     Moon_update(&moon, &earth);
     Cursor_update(&cursor, &earth, &fireBall);
-    FireBall_update(&fireBall);
+    FireBall_update(&fireBall, &earth);
 
     Earth_renderSprite(&earth);
     Moon_renderSprite(&moon);
